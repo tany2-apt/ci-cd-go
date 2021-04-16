@@ -1,0 +1,15 @@
+name: Testing
+on:
+  push:
+    branches:
+      - "master"
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - run: echo "running"
+      - run: docker build -t tan24/go-ci-cd:version1 .
+      - run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+      - run: docker push tan24/go-ci-cd:version1
