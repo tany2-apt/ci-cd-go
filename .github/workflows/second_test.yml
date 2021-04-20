@@ -8,6 +8,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/cache@v2
+      with:
+        path: ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.mod') }}
+        restore-keys: |
+         ${{ runner.os }}-go  
     - uses: actions/checkout@v2
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
@@ -27,4 +33,4 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-ci-cd:v2
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/go-ci-cd:cachedv1
