@@ -1,15 +1,13 @@
-FROM golang:1.15 as builder
+FROM golang:latest
 
-ENV GO111MODULE=on
-# Set current working directory
 WORKDIR /app
 
 COPY go.mod .
 
-# Now, copy the source code
+RUN go mod download
+
 COPY . .
 
-# Build the application.
 RUN go build -o main .
-# Run executable
+# Command to run the executable
 CMD ["./main"]
