@@ -11,7 +11,11 @@ jobs:
       runs-on: ${{matrix.os}}
       strategy:
         matrix:
-          os: [linux/amd64,linux/arm64]
+          include:
+            - os: linux
+              arch: amd64
+            - os: linux
+              arch: arm64
       steps:
        - name: Set up Go
          uses: actions/setup-go@v2
