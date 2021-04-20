@@ -21,6 +21,11 @@ jobs:
     - name: Build
       run: go build -v ./...
 
+    - runs-on: ${{matrix.os}} 
+      strategy:
+      matrix:  
+        os: [linux/amd64,linux/arm64]
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
