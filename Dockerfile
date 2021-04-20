@@ -1,6 +1,6 @@
 FROM golang:1.15 as builder
 
-
+ENV GO111MODULE=on
 # Set current working directory
 WORKDIR /app
 
