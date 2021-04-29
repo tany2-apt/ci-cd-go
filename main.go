@@ -8,7 +8,7 @@ import (
 func home(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"message": "docker cache"}`))
+	w.Write([]byte(`{"message": "docker cache, watch"}`))
 
 }
 
